@@ -49,7 +49,7 @@
 }
 
 - (void)updateDisplay {
-    float progress = self.myCount / MAX_COUNT;
+    float progress = (float)self.myCount / MAX_COUNT;
     self.myLabel.text = [NSString stringWithFormat:@"%1.2f", progress];
     self.myProgressView.progress = progress;
 }
