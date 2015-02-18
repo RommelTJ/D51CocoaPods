@@ -1,10 +1,10 @@
-# Concurrency Examples
+# Learning CocoaPods
 
 Version: 0.0.1 - 17 Feb 2015
 
 ## Description
 
-iOS Programming II at UCSD Extension.
+Learning CocoaPods.
 
 ### Documentation
 Branches:  
