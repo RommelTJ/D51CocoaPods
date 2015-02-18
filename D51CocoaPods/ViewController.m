@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 #import <LDProgressView/LDProgressView.h>
+#import <AFNetworking/AFNetworking.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 
 #define MAX_COUNT 10
 
@@ -20,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *myLabel;
 @property (weak, nonatomic) IBOutlet UIProgressView *myProgressView;
 @property (weak, nonatomic) IBOutlet UIButton *myDownloadFileButton;
+@property (weak, nonatomic) IBOutlet UITextView *myTextView;
 
 @end
 
@@ -28,12 +31,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    CGRect myRect = CGRectMake(20, 200, 200, 40); //Go right 20, down 200, width 200 height 40.
-    self.myLDProgressViewRunTime = [[LDProgressView alloc] initWithFrame:myRect];
-    self.myLDProgressViewRunTime.color = [UIColor redColor];
-    [self.view addSubview:self.myLDProgressViewRunTime];
+//    CGRect myRect = CGRectMake(20, 200, 200, 40); //Go right 20, down 200, width 200 height 40.
+//    self.myLDProgressViewRunTime = [[LDProgressView alloc] initWithFrame:myRect];
+//    self.myLDProgressViewRunTime.color = [UIColor redColor];
+//    [self.view addSubview:self.myLDProgressViewRunTime];
     
     self.myLDProgressViewDesignTime.color = [UIColor greenColor];
+    self.myTextView.text = @"";
+    self.myTextView.editable = NO;
     
     [self updateDisplay];
 }
@@ -48,6 +53,20 @@
     self.myCount = 0;
     [self updateDisplay];
     self.myTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(doTimer) userInfo:nil repeats:YES];
+}
+
+- (IBAction)doDemoAFNetworkingButton:(id)sender {
+    [SVProgressHUD show];
+    self.myTextView.text = @"Accessing the web site...";
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager GET:@"http://www.reddit.com/" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        self.myTextView.text = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        [SVProgressHUD dismiss];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        self.myTextView.text = [error localizedDescription];
+        [SVProgressHUD dismiss];
+    }];
 }
 
 - (void)doTimer {
