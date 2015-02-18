@@ -1,0 +1,10 @@
+PODS:
+  - LDProgressView (1.2.1)
+
+DEPENDENCIES:
+  - LDProgressView (~> 1.2)
+
+SPEC CHECKSUMS:
+  LDProgressView: e0ee70a7cd858ac8c04b319ef87854e7250fb357
+
+COCOAPODS: 0.35.0
