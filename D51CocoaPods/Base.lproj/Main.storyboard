@@ -34,11 +34,16 @@
                                     <action selector="doDownloadFile:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8Fo-OF-hJI"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XkX-3u-66q" customClass="LDProgressView">
+                                <rect key="frame" x="16" y="102" width="262" height="33"/>
+                                <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="myDownloadFileButton" destination="YbY-SM-HLa" id="XJb-jh-Dnq"/>
+                        <outlet property="myLDProgressViewDesignTime" destination="XkX-3u-66q" id="OMj-pJ-8IY"/>
                         <outlet property="myLabel" destination="cfs-3x-Awn" id="pPT-1a-HBS"/>
                         <outlet property="myProgressView" destination="LC2-Ux-uEa" id="pIZ-ff-Kmf"/>
                     </connections>
